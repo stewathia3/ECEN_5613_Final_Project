@@ -1,0 +1,66 @@
+# depslib dependency file v1.0
+1606695889 source:e:\esd final project\solar-tracker\fuse.c
+	<avr/io.h>
+
+1492060488 source:e:\esd final project\solar-tracker\delay.c
+	<util\delay.h>
+	"delay.h"
+
+1492060488 e:\esd final project\solar-tracker\delay.h
+	"stdutils.h"
+
+1492060488 e:\esd final project\solar-tracker\stdutils.h
+
+1606590471 source:e:\esd final project\solar-tracker\uart.c
+	<stdarg.h>
+	"uart.h"
+	<avr\io.h>
+	"stdutils.h"
+
+1492060488 e:\esd final project\solar-tracker\uart.h
+	<avr\io.h>
+	"stdutils.h"
+
+1606877115 source:e:\esd final project\solar-tracker\main.c
+	<avr/io.h>
+	"uart.h"
+	<avr/sfr_defs.h>
+	<stdint.h>
+	<stdlib.h>
+	<util/delay.h>
+	"Test_BNO055.h"
+	"bno055.h"
+	"i2c.h"
+
+1606789581 e:\esd final project\solar-tracker\test_bno055.h
+
+1606756623 e:\esd final project\solar-tracker\i2cmaster.h
+	<avr/io.h>
+
+1606789105 source:e:\esd final project\solar-tracker\i2cmaster.c
+	<inttypes.h>
+	<compat/twi.h>
+	"i2cmaster.h"
+
+1606789127 source:e:\esd final project\solar-tracker\i2c.c
+	<inttypes.h>
+	<compat/twi.h>
+	"i2c.h"
+
+1606789105 e:\esd final project\solar-tracker\i2c.h
+	<avr/io.h>
+
+1606877202 e:\esd final project\solar-tracker\bno055.h
+	"Test_BNO055.h"
+
+1606877132 source:e:\esd final project\solar-tracker\bno055.c
+	<avr/io.h>
+	"uart.h"
+	<avr/sfr_defs.h>
+	<stdint.h>
+	<stdlib.h>
+	<util/delay.h>
+	"Test_BNO055.h"
+	"bno055.h"
+	"i2c.h"
+
