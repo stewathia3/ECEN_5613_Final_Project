@@ -1,76 +1,18 @@
-/***************************************************************************************************
-                                   ExploreEmbedded	
-****************************************************************************************************
- * File:   uart.h
- * Version: 15.0
- * Author: ExploreEmbedded
- * Website: http://www.exploreembedded.com/wiki
- * Description: Contains the baudrate configurations and function prototypes for UART routines
-
-The libraries have been tested on ExploreEmbedded development boards. We strongly believe that the 
-library works on any of development boards for respective controllers. However, ExploreEmbedded 
-disclaims any kind of hardware failure resulting out of usage of libraries, directly or indirectly.
-Files may be subject to change without prior notice. The revision history contains the information 
-related to updates. 
+/*
+ * test.c
+ *
+ *  Created on: Dec 4, 2020
+ *      Author: maitr
+ */
 
 
-GNU GENERAL PUBLIC LICENSE: 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-Errors and omissions should be reported to codelibraries@exploreembedded.com
- **************************************************************************************************/
-
-
-
-/***************************************************************************************************
-                             Revision History
-****************************************************************************************************
-15.0: Initial version 
-***************************************************************************************************/
 #ifndef _UART_H
 #define _UART_H
 
-#include <avr\io.h>
+
+#include "gpio.h"						//we use gpio
 #include "stdutils.h"
 
-/***************************************************************************************************
-                             Baudrate configurations
-***************************************************************************************************/
-#define C_MinBaudRate_U32 2400
-#define C_MaxBaudRate_U32 115200UL
-
-
-#define M_GetBaudRateGeneratorValue(baudrate)  (((F_CPU -((baudrate) * 8L)) / ((baudrate) * 16UL)))
-/**************************************************************************************************/
-
-
-
-
-
-/***************************************************************************************************
-                      PreCompile configurations to enable/disable the functions
-****************************************************************************************************
-PreCompile configuration to enable or disable the API's.
- 1.Required interfaces can be enabled/disabled by configuring 
-   its respective macros to 1/0.
- 2. By default all the API's are enabled except for FLOAT transmission.
- 3. Transmitting of floating number takes huge controller
-    resources and need to be enabled only if required. 
-	This implies for other interfaces as well. 
-***************************************************************************************************/
-#define    Enable_UART_TxString          1
-#define    Enable_UART_RxString          1
 #define    Enable_UART_TxNumber          1
 #define    Enable_UART_TxFloatNumber     1
 #define    Enable_UART_Printf            1
@@ -90,23 +32,52 @@ PreCompile configuration to enable or disable the API's.
 /**************************************************************************************************/
 
 
+//hardware configuration
+//#define UxPORT				PORTB
+#define UxDDR				DDRB
+#define UxTX				(1<<0)		//comment out if not used
+#define UxRX				(1<<1)		//comment out if not used
+#define    Enable_UART_Printf            1
+
+//end hardware configuration
 
 
+//baud rate definitions
+#define F_UART				(F_CPU)		//8Mhz		//crystal frequency
+#define UART_BR_300			300ul		//buadrate=300
+#define UART_BR_600			600ul		//buadrate=600
+#define UART_BR_1200		1200ul		//buadrate=1200
+#define UART_BR_2400		2400ul		//buadrate=2400
+#define UART_BR_4800		4800ul		//buadrate=4800
+#define UART_BR_9600		9600ul		//buadrate=9600
+#define UART_BR_19200		19200ul		//buadrate=19200
+#define UART_BR_38400		38400ul		//buadrate=38400
+#define UART_BR_57600		57600ul		//buadrate=57600
+#define UART_BR_115200		115200ul	//buadrate=115200
 
-/***************************************************************************************************
-                             Function Prototypes
-***************************************************************************************************/
+#define uart_put(n)			UART_TxChar(n)
+#define uart_get()			UART_RxChar()
 
-void UART_Init(uint32_t v_baudRate_u32);
-void UART_SetBaudRate(uint32_t v_baudRate_u32);
-void UART_TxChar(char v_uartData_u8);
-char UART_RxChar(void);
-void UART_TxString(char *ptr_string);
-uint8_t UART_RxString(char *ptr_string);
+void UART_Init(unsigned long baud);
+
+void UART_PutChar(char data_t);			//send data
+
+void UART_putString(char * str);			//put a string
+
+void UART_putline(char * str);			//put a string, with line return
+
+char UART_getChar(void);					//get a char from uart
+
+//test if uart receiver has data
+uint8_t UART_Available(void);
+//#define UART_Availablr()	(UCSR0A & (1<<RXC0))
+
+//test if transmitter is busy
+uint8_t UART_Busy(void);
+//#define UART_Busy()			(!(UCSR0A & (1<<UDRE0)))
+
 void UART_TxNumber(uint8_t v_numericSystem_u8, uint32_t v_number_u32, uint8_t v_numOfDigitsToTransmit_u8);
 void UART_TxFloatNumber(float v_floatNumber_f32);
 void UART_Printf(const char *argList, ...);
-/**************************************************************************************************/
-
 
 #endif

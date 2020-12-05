@@ -1,225 +1,115 @@
-/***************************************************************************************************
-                                   ExploreEmbedded
-****************************************************************************************************
- * File:   uart.c (AVR controllers)
- * Version: 16.0
- * Author: ExploreEmbedded
- * Website: http://www.exploreembedded.com/wiki
- * Description: File contains the Library routines for UART
-
-The libraries have been tested on ExploreEmbedded development boards. We strongly believe that the
-library works on any of development boards for respective controllers. However, ExploreEmbedded
-disclaims any kind of hardware failure resulting out of usage of libraries, directly or indirectly.
-Files may be subject to change without prior notice. The revision history contains the information
-related to updates.
-
-
-GNU GENERAL PUBLIC LICENSE:
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-Errors and omissions should be reported to codelibraries@exploreembedded.com
- **************************************************************************************************/
-
-
-/**************************************************************************************************
-                             Revision History
-****************************************************************************************************
-15.0: Initial version
-16.0: Updated the Tx Number function to support bin,dec,hex in one function.
-***************************************************************************************************/
 #include <stdarg.h>
 #include "uart.h"
 #include <avr\io.h>
 #include "stdutils.h"
+//baud rate definitions
+#define USART_BR_300		300ul
+#define USART_BR_1200		1200ul
+#define USART_BR_2400		2400ul
+#define USART_BR_4800		4800ul
+#define USART_BR_9600		9600ul
+#define USART_BR_14400		14400ul
+#define USART_BR_19200		19200ul
+#define USART_BR_38400		38400ul
+#define USART_BR_57600		57600ul
 
+//for compatability
+#define UxBRR				UBRR0
+#define UxCSRA				UCSR0A
+#define UxCSRB				UCSR0B
+#define UxCSRC				UCSR0C
+#define UxDR				UDR0
 
+//uart for 8-bit, 1stop bit, no parity transmission
+void UART_Init(unsigned long baud) {
 
-/***************************************************************************************************
-                         void UART_Init(uint32_t v_baudRate_u32)
-****************************************************************************************************
- * I/P Arguments: uint32_t : Baudrate to be configured.
- * Return value	: none
-
- * description  :This function is used to initialize the UART at specified baud rate.
-                 If the requested baud rate is not within the supported range then
-                 the default baud rate of 9600 is set.
-
-
-		    Refer uart.h file for Supported(range) baud rates.
-***************************************************************************************************/
-void UART_Init(uint32_t v_baudRate_u32)
-{
-	UCSR0B= (1<<RXEN0) | (1<<TXEN0);                  // Enable Receiver and Transmitter
-	UCSR0C=  (1<<UCSZ00) | (1<<UCSZ01);   // Asynchronous mode 8-bit data and 1-stop bit
-	UCSR0A= 0x00;                                   // Clear the UASRT status register
-	UART_SetBaudRate(v_baudRate_u32);
-}
-
-
-
-
-
-
-/***************************************************************************************************
-                         void UART_SetBaudRate(uint32_t v_baudRate_u32)
- ***************************************************************************************************
- * I/P Arguments: uint32_t : v_baudRate_u32 to be configured.
- * Return value	: none
-
- * description  :This function is used to Set/Change the baudrate on the fly.
-                 If the requested baud rate is not within the supported range then
-                 the default baudrate of 9600 is set.
-
-		    Refer uart.h file for Supported range of baud rates.
-***************************************************************************************************/
-void UART_SetBaudRate(uint32_t v_baudRate_u32)
-{
-	uint16_t RegValue;
-
-	if((v_baudRate_u32 >= C_MinBaudRate_U32) && (v_baudRate_u32<=C_MaxBaudRate_U32))
-	{
-		/* Check if the requested baudate is within range,
-	     If yes then calculate the value to be loaded into baud rate generator. */
-		RegValue = M_GetBaudRateGeneratorValue(v_baudRate_u32);
-	}
-	else
-	{
-		/*	 Invalid baudrate requested, hence set it to default baudrate of 9600 */
-		RegValue = M_GetBaudRateGeneratorValue(9600);
-	}
-
-	UBRR0L = util_ExtractByte0to8(RegValue);
-	UBRR0H = util_ExtractByte8to16(RegValue);
-}
-
-
-
-
-
-/***************************************************************************************************
-                              char UART_RxChar()
- ***************************************************************************************************
- * I/P Arguments: none.
- * Return value	: char: Ascii value of the character received
-
- * description :This function is used to receive a char from UART module.
-                It waits till a char is received and returns it after reception.
-***************************************************************************************************/
-char UART_RxChar(void)
-{
-	while(util_IsBitCleared(UCSR0A,RXC0));  // Wait till the data is received
-	return(UDRE0);                          // return the received char
-}
-
-
-
-
-
-
-
-
-/***************************************************************************************************
-                         void UART_TxChar(char v_uartData_u8)
-****************************************************************************************************
- * I/P Arguments: char--> Ascii value of the character to be transmitted.
- * Return value	: none.
-
- * description  :This function is used to transmit a char through UART module.
-***************************************************************************************************/
-void UART_TxChar(char v_uartData_u8)
-{
-	while(util_IsBitCleared(UCSR0A,UDRE0)); // Wait till Transmitter(UDR) register becomes Empty
-	UDR0 =v_uartData_u8;                              // Load the data to be transmitted
-}
-
-
-
-
-
-
-
-/***************************************************************************************************
-                         void UART_TxString(char *ptr_string)
-****************************************************************************************************
- * I/P Arguments: String(Address of the string) to be transmitted.
- * Return value	: none
-
- * description :This function is used to transmit a NULL terminated string through UART.
-               1.The ptr_string points to the first char of the string
-                    and traverses till the end(NULL CHAR) and transmits a char each time
-***************************************************************************************************/
-#if ((Enable_UART_TxString==1)|| (Enable_UART_Printf == 1))
-void UART_TxString(char *ptr_string)
-{
-	while(*ptr_string)
-		UART_TxChar(*ptr_string++);// Loop through the string and transmit char by char
-}
+	//check to see if if rx/tx pins are defined
+#if defined(UxTX)								//TX as output
+	IO_OUT(UxDDR, UxTX);
 #endif
 
-
-
-
-
-
-/***************************************************************************************************
-                         uint8_t UART_RxString(char *ptr_string)
-****************************************************************************************************
- * I/P Arguments: char *:  Address of the string/buffer where the received data needs to be stored
- * Return value	: uint8_t: Number of chars received.
-
- * description  :
-              1.This function is used to receive a ASCII string through UART till the carriage_return/New_line
-              2.The stream of data is copied to the buffer till carriage_return/New_line is encountered.
-			  3. Once the Carriage_return/New_Line is received the string will be null terminated.
-
- *****NOTE*******:
-  1.The received char is ECHOED back,
-    if not required then comment UART_TxChar(ch) in the code.
-  2.BackSlash is not taken care.
-***************************************************************************************************/
-#if (Enable_UART_RxString==1)
-uint8_t UART_RxString(char *ptr_string)
-{
-	char ch;
-    uint8_t len = 0;
-	while(1)
-	{
-		ch=UART_RxChar();    //Receive a char
-		UART_TxChar(ch);     //Echo back the received char
-
-		if((ch=='\r') || (ch=='\n')) //read till enter key is pressed
-		{						     //once enter key is pressed null terminate the string
-			ptr_string[len]=0;           //and break the loop
-			break;
-		}
-        else if((ch=='\b') && (len!=0))
-        {
-		    len--;    //If backspace is pressed then decrement the index to remove the old char
-        }
-        else
-        {
-            ptr_string[len]=ch; //copy the char into string and increment the index
-            len++;
-        }
-	}
-  return len;
-}
+#if defined(UxRX)								//RX as input
+	IO_IN(UxDDR, UxRX);
 #endif
 
+	/* enable receiver and transmitter */
+	UxCSRA=		(1<<U2X0);						//double speed
+	UxCSRB=		(0<<RXCIE0) |					//0->disable RX complete interrupt
+				(0<<TXCIE0) |					//0->disable TX complete interrupt
+				(0<<UDRIE0) |					//0->disable usart data register empty interrupt
+#if defined(UxRX)
+				(1<<RXEN0) |					//1->enable receiver
+#else
+				(0<<RXEN0) |					//1->enable receiver
+#endif
+#if defined(UxTX)
+				(1<<TXEN0) |					//1->enable transmitter
+#else
+				(0<<TXEN0) |					//1->enable transmitter
+#endif
+				(0<<UCSZ02) |					//char size 0b011->8bit
+				(0<<RXB80) |					//receive data bit 8 / 9th data bit received
+				(0<<TXB80);						//transmitter data bit 8 / 9th data bit to be sent
 
+	/* set frame format: 8 data, 1 stop bit */
+	UxCSRC=		(0<<UMSEL01) | (0<<UMSEL00) |	//00-> asynchronous usart
+												//01-> synchronous usart
+												//10-> reserved
+												//11-> master spi
+				(0<<UPM01) | (0<<UPM00) |		//parity check 00-> disabled
+												//01-> reserved
+												//10-> enabled, even parity
+												//11-> enabled, odd parity
+				(0<<USBS0) |					//stop bit select. 0->1 bit, 1->2bit
+				(1<<UCSZ01) | (1<<UCSZ00) |		//char size.
+												//000-> 5-bit
+												//001-> 6-bit
+												//010-> 7-bit
+												//011-> 8-bit
+												//100-> reserved
+												//101-> reserved
+												//110-> reserved
+												//111-> 9-bit
+				(1<<UCPOL0);					//clock polarity. 0-> rising xck edge. 1-> falling xck edge
+	/* baud rate generator */
+	//UBRR0H=(unsigned char) (baud >> 8);
+	//UBRR0L=(unsigned char) baud;
+	UxBRR=F_UART / ((UxCSRA & (1<<U2X0))?8:16) / baud - 1;			//generate baud rate register
 
+	//DDRD |= (1<<5);							//xck as output
 
+}
+
+void UART_PutChar(char data_t) {			//send data
+	while (!(UxCSRA & (1<<UDRE0)));			//wait for transmission to end
+	UxDR=data_t;									//load up the buffer
+	//return 0;									//transmission complete
+}
+
+void UART_putString(char * str) {			//put a string
+	while (*str)								//if the string isn't empty
+		UART_PutChar(*str++);						//send the char and advance the pointer
+}
+
+void UART_putline(char * str) {
+	UART_putString(str);
+	UART_putString("\r\n");
+}
+
+char UART_getChar(void) {
+	//while (!(UxCSRA & (1<<RXC0))) continue;		//wait for the receive to finish
+	return UxDR;									//return the context of uart register
+}
+
+//test if uart receiver has data
+uint8_t UART_Available(void) {
+	return UxCSRA & (1<<RXC0);				//RXC0 set if data is available
+}
+
+//test if transmitter is busy
+uint8_t UART_Busy(void) {
+	return !(UxCSRA & (1<<UDRE0));			//UDRE0 set if tx buffer is empty
+}
 
 
 /***************************************************************************************************
@@ -262,7 +152,7 @@ void UART_TxNumber(uint8_t v_numericSystem_u8, uint32_t v_number_u32, uint8_t v_
             /* Start Extracting the bits from the specified bit positions.
              Get the Acsii values of the bits and transmit */
             i = util_GetBitStatus(v_number_u32,(v_numOfDigitsToTransmit_u8-1));
-            UART_TxChar(util_Dec2Ascii(i));
+            UART_PutChar(util_Dec2Ascii(i));
             v_numOfDigitsToTransmit_u8--;
         }
     }
@@ -270,7 +160,7 @@ void UART_TxNumber(uint8_t v_numericSystem_u8, uint32_t v_number_u32, uint8_t v_
     {
         /* If the number is zero then update the array with the same for transmitting */
         for(i=0;((i<v_numOfDigitsToTransmit_u8) && (i<C_MaxDigitsToTransmit_U8)) ;i++)
-            UART_TxChar('0');
+            UART_PutChar('0');
     }
     else
     {
@@ -308,7 +198,7 @@ void UART_TxNumber(uint8_t v_numericSystem_u8, uint32_t v_number_u32, uint8_t v_
         while(i)
         {
             /* Finally get the ascii values of the digits and transmit*/
-            UART_TxChar(util_Hex2Ascii(a[i-1]));
+            UART_PutChar(util_Hex2Ascii(a[i-1]));
             i--;
         }
     }
@@ -352,7 +242,7 @@ void UART_TxFloatNumber(float v_floatNumber_f32)
 	v_tempNumber_u32 = (uint32_t) v_floatNumber_f32;
 	UART_TxNumber(C_DECIMAL_U8,v_tempNumber_u32,C_DefaultDigitsToTransmit_U8);
 
-	UART_TxChar('.');
+	UART_PutChar('.');
 
 	v_floatNumber_f32 = v_floatNumber_f32 - v_tempNumber_u32;
 	v_tempNumber_u32 = v_floatNumber_f32 * 1000000;
@@ -451,7 +341,7 @@ void UART_Printf(const char *argList, ...)
 			case 'C':
 			case 'c':     /* Argument type is of char, hence read char data from the argp */
 				ch = va_arg(argp, int);
-				UART_TxChar(ch);
+				UART_PutChar(ch);
 				break;
 
 			case 'd':    /* Argument type is of signed integer, hence read 16bit data from the argp */
@@ -459,7 +349,7 @@ void UART_Printf(const char *argList, ...)
 				if(v_num_s16<0)
 				 { /* If the number is -ve then display the 2's complement along with '-' sign */
 				   v_num_s16 = -v_num_s16;
-				   UART_TxChar('-');
+				   UART_PutChar('-');
 				 }
 				UART_TxNumber(C_DECIMAL_U8,v_num_s16,v_numOfDigitsToTransmit_u8);
 				break;
@@ -469,7 +359,7 @@ void UART_Printf(const char *argList, ...)
 				if(v_num_s32<0)
 				 { /* If the number is -ve then display the 2's complement along with '-' sign */
 				   v_num_s32 = -v_num_s32;
-				   UART_TxChar('-');
+				   UART_PutChar('-');
 				 }
 				UART_TxNumber(C_DECIMAL_U8,v_num_s32,v_numOfDigitsToTransmit_u8);
 				break;
@@ -526,18 +416,18 @@ void UART_Printf(const char *argList, ...)
 			case 'S':
 			case 's': /* Argument type is of string, hence get the pointer to sting passed */
 				str = va_arg(argp, char *);
-				UART_TxString(str);
+				UART_putString(str);
 				break;
 
 			case '%':
-				UART_TxChar('%');
+				UART_PutChar('%');
 				break;
 			}
 		}
 		else
 		{
 			/* As '%' is not detected transmit the char passed */
-			UART_TxChar(ch);
+			UART_PutChar(ch);
 		}
 	}
 
