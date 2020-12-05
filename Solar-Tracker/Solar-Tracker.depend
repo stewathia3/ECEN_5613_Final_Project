@@ -84,7 +84,7 @@
 1606789105 e:\ecen_5613_final_project\solar-tracker\i2c.h
 	<avr/io.h>
 
-1607122420 source:e:\ecen_5613_final_project\solar-tracker\main.c
+1607186654 source:e:\ecen_5613_final_project\solar-tracker\main.c
 	<avr/io.h>
 	"uart.h"
 	<avr/sfr_defs.h>
@@ -141,4 +141,12 @@
 	<stdint.h>
 	<intrinsics.h>
 	<avr/interrupt.h>
+
+1607197148 source:e:\ecen_5613_final_project\solar-tracker\adc_read.c
+	<avr/io.h>
+	"uart.h"
+	<avr/sfr_defs.h>
+	<stdint.h>
+	<stdlib.h>
+	<util/delay.h>
 

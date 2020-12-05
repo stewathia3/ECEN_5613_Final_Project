@@ -21,11 +21,16 @@
 #include "bno055.h"
 #include "i2c.h"
 #include "stepper.h"
+#include "ADC_READ.h"
 /*************************************************************************************/
 
 
 int main(void)
 {
+     int ADCvalue0;
+     int ADCvalue1;
+     int ADCvalue2;
+     int ADCvalue3;
 	//AVR_Init();
 	UART_Init(115200);
 	init_stepper();
@@ -48,11 +53,26 @@ int main(void)
 //	_delay_ms(10);
 
   //  BNO_Calib();
+  DDRD |= _BV(2);
+
+	// OCR1A (port B, 1) as output
+	DDRB |= _BV(1);
+	TCCR1A |= 1 << WGM11 | 1 << COM1A1 | 1 << COM1A0; // Inverted mode
+	TCCR1B |= 1 << WGM12 | 1 << WGM13 | 1 << CS11; // prescaler is 8
+
+	ICR1 = 39999;
+
+	int pulse_width = 3000; // for 1.5 ms pulse width!
+
+	OCR1A = ICR1 - pulse_width;
 	//Endless Loop
 	while(1)
 	{
 
-
+     ADCvalue0 = ADC_READ(0);
+         ADCvalue1 = ADC_READ(1);
+         ADCvalue2 = ADC_READ(2);
+         ADCvalue3 = ADC_READ(3);
         stepper_loop();
      //   BNO_Euler_data();
 
