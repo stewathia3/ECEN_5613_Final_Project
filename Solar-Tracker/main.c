@@ -27,10 +27,6 @@
 
 int main(void)
 {
-     int ADCvalue0;
-     int ADCvalue1;
-     int ADCvalue2;
-     int ADCvalue3;
 	//AVR_Init();
 	UART_Init(115200);
 	init_stepper();
@@ -69,10 +65,6 @@ int main(void)
 	while(1)
 	{
 
-     ADCvalue0 = ADC_READ(0);
-         ADCvalue1 = ADC_READ(1);
-         ADCvalue2 = ADC_READ(2);
-         ADCvalue3 = ADC_READ(3);
         stepper_loop();
      //   BNO_Euler_data();
 

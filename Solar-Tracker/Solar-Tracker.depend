@@ -84,7 +84,7 @@
 1606789105 e:\ecen_5613_final_project\solar-tracker\i2c.h
 	<avr/io.h>
 
-1607186654 source:e:\ecen_5613_final_project\solar-tracker\main.c
+1607197578 source:e:\ecen_5613_final_project\solar-tracker\main.c
 	<avr/io.h>
 	"uart.h"
 	<avr/sfr_defs.h>
@@ -95,6 +95,7 @@
 	"bno055.h"
 	"i2c.h"
 	"stepper.h"
+	"ADC_READ.h"
 
 1607122633 e:\ecen_5613_final_project\solar-tracker\uart.h
 	"gpio.h"
@@ -142,7 +143,16 @@
 	<intrinsics.h>
 	<avr/interrupt.h>
 
-1607197148 source:e:\ecen_5613_final_project\solar-tracker\adc_read.c
+1607197604 source:e:\ecen_5613_final_project\solar-tracker\adc_read.c
+	<avr/io.h>
+	"uart.h"
+	<avr/sfr_defs.h>
+	<stdint.h>
+	<stdlib.h>
+	"ADC_READ.h"
+	<util/delay.h>
+
+1607197998 e:\ecen_5613_final_project\solar-tracker\adc_read.h
 	<avr/io.h>
 	"uart.h"
 	<avr/sfr_defs.h>
