@@ -1,7 +1,7 @@
 /*
  *
- *  Created on: Nov 30, 2020
- *      Author: maitr
+ *
+ *      Author: maitreyee Rao
  */
 
 
@@ -16,6 +16,7 @@
 #include <stdlib.h>
 
 #include <util/delay.h>
+#include "servo.h"
 
 #include "Test_BNO055.h"
 #include "bno055.h"
@@ -29,36 +30,14 @@ int main(void)
 {
 	//AVR_Init();
 	UART_Init(115200);
-	init_stepper();
 	servo_init();
 	UART_Printf("Hello");
 
-	_delay_ms(750);
 
-
-	DDRC |= _BV(5);		//Makes PORTC, bit 5 as Output //sda
-	DDRC |= _BV(4);		//Makes PORTC, bit 4 as Output//scl
-
-	data = 0;
-	init_i2c();
-
-
-	start_wait_i2c(BNO055_ADDRESS+I2C_WRITE);	//Set device address and read mode
-	write_i2c(BNO055_OPR_MODE_ADDR);
-	write_i2c(OPERATION_MODE_NDOF);		//Set operation mode to IMU
-	stop_i2c();
-	_delay_ms(10);
-
-  //  BNO_Calib();
-
-	//Endless Loop
 	while(1)
 	{
 
-//        stepper_loop();
-       // BNO_Euler_data();
      sunsensor_predict();
-
-		_delay_ms(1000);
+     _delay_ms(1000);
 	}
 }

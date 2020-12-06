@@ -48,8 +48,12 @@ h:/codeblocks/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodhi4.o)
 Allocating common symbols
 Common symbol       size              file
 
-pulse_width         0x2               obj\Release\ADC_READ.o
-data                0x1               obj\Release\bno055.o
+x                   0x2               obj\Release\easydriver.o
+state               0x2               obj\Release\easydriver.o
+user_input          0x1               obj\Release\easydriver.o
+pulse_width         0x2               obj\Release\servo.o
+data                0x1               obj\Release\ADC_READ.o
+y                   0x2               obj\Release\easydriver.o
 
 Discarded input sections
 
@@ -57,6 +61,7 @@ Discarded input sections
  .bss           0x00000000        0x0 h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm328p.o
  .text          0x00000000        0x0 obj\Release\ADC_READ.o
  .bss           0x00000000        0x0 obj\Release\ADC_READ.o
+ COMMON         0x00000000        0x0 obj\Release\ADC_READ.o
  .text          0x00000000        0x0 obj\Release\bno055.o
  .data          0x00000000        0x0 obj\Release\bno055.o
  .bss           0x00000000        0x0 obj\Release\bno055.o
@@ -73,15 +78,35 @@ Discarded input sections
                 0x00000000        0x0 obj\Release\delay.o
  .text.DELAY_ms
                 0x00000000        0x0 obj\Release\delay.o
+ .text          0x00000000        0x0 obj\Release\easydriver.o
+ .data          0x00000000        0x0 obj\Release\easydriver.o
+ .bss           0x00000000        0x0 obj\Release\easydriver.o
+ .text.resetEDPins
+                0x00000000        0x0 obj\Release\easydriver.o
+ .text.easydriver_init
+                0x00000000        0x0 obj\Release\easydriver.o
+ .text.BackwardOneStep
+                0x00000000        0x0 obj\Release\easydriver.o
+ .text.ForwardOneStep
+                0x00000000        0x0 obj\Release\easydriver.o
+ COMMON         0x00000000        0x0 obj\Release\easydriver.o
  .text          0x00000000        0x0 obj\Release\fuse.o
  .data          0x00000000        0x0 obj\Release\fuse.o
  .bss           0x00000000        0x0 obj\Release\fuse.o
  .text          0x00000000        0x0 obj\Release\i2c.o
  .data          0x00000000        0x0 obj\Release\i2c.o
  .bss           0x00000000        0x0 obj\Release\i2c.o
+ .text.init_i2c
+                0x00000000        0x0 obj\Release\i2c.o
  .text.start_i2c
                 0x00000000        0x0 obj\Release\i2c.o
+ .text.start_wait_i2c
+                0x00000000        0x0 obj\Release\i2c.o
  .text.repeat_start_i2c
+                0x00000000        0x0 obj\Release\i2c.o
+ .text.stop_i2c
+                0x00000000        0x0 obj\Release\i2c.o
+ .text.write_i2c
                 0x00000000        0x0 obj\Release\i2c.o
  .text.readAck_i2c
                 0x00000000        0x0 obj\Release\i2c.o
@@ -89,9 +114,13 @@ Discarded input sections
                 0x00000000        0x0 obj\Release\i2c.o
  .text          0x00000000        0x0 obj\Release\main.o
  .bss           0x00000000        0x0 obj\Release\main.o
+ .text          0x00000000        0x0 obj\Release\servo.o
+ .bss           0x00000000        0x0 obj\Release\servo.o
  .text          0x00000000        0x0 obj\Release\stepper.o
  .data          0x00000000        0x0 obj\Release\stepper.o
  .bss           0x00000000        0x0 obj\Release\stepper.o
+ .text.init_stepper
+                0x00000000        0x0 obj\Release\stepper.o
  .text.step     0x00000000        0x0 obj\Release\stepper.o
  .text.stepper_loop
                 0x00000000        0x0 obj\Release\stepper.o
@@ -200,9 +229,11 @@ LOAD h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm328p.o
 LOAD obj\Release\ADC_READ.o
 LOAD obj\Release\bno055.o
 LOAD obj\Release\delay.o
+LOAD obj\Release\easydriver.o
 LOAD obj\Release\fuse.o
 LOAD obj\Release\i2c.o
 LOAD obj\Release\main.o
+LOAD obj\Release\servo.o
 LOAD obj\Release\stepper.o
 LOAD obj\Release\uart.o
 LOAD h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libm.a
@@ -300,7 +331,7 @@ LOAD h:/codeblocks/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0xcd2
+.text           0x00000000      0xc08
  *(.vectors)
  .vectors       0x00000000       0x68 h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm328p.o
                 0x00000000                __vectors
@@ -384,87 +415,78 @@ LOAD h:/codeblocks/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
                 0x000000a2                __vector_20
                 0x000000a6                . = ALIGN (0x2)
  *(.text.*)
- .text.servo_init
-                0x000000a6       0x42 obj\Release\ADC_READ.o
-                0x000000a6                servo_init
  .text.ADC_READ
-                0x000000e8       0x52 obj\Release\ADC_READ.o
-                0x000000e8                ADC_READ
+                0x000000a6       0x52 obj\Release\ADC_READ.o
+                0x000000a6                ADC_READ
  .text.sunsensor_predict
-                0x0000013a      0x25e obj\Release\ADC_READ.o
-                0x0000013a                sunsensor_predict
- .text.init_i2c
-                0x00000398       0x12 obj\Release\i2c.o
-                0x00000398                init_i2c
- .text.start_wait_i2c
-                0x000003aa       0x50 obj\Release\i2c.o
-                0x000003aa                start_wait_i2c
- .text.stop_i2c
-                0x000003fa       0x10 obj\Release\i2c.o
-                0x000003fa                stop_i2c
- .text.write_i2c
-                0x0000040a       0x24 obj\Release\i2c.o
-                0x0000040a                write_i2c
- .text.main     0x0000042e       0x84 obj\Release\main.o
-                0x0000042e                main
- .text.init_stepper
-                0x000004b2        0xa obj\Release\stepper.o
-                0x000004b2                init_stepper
+                0x000000f8      0x1d0 obj\Release\ADC_READ.o
+                0x000000f8                sunsensor_predict
+ .text.main     0x000002c8       0x42 obj\Release\main.o
+                0x000002c8                main
+ .text.servo_init
+                0x0000030a       0x42 obj\Release\servo.o
+                0x0000030a                servo_init
+ .text.servo_right
+                0x0000034c       0x4a obj\Release\servo.o
+                0x0000034c                servo_right
+ .text.servo_left
+                0x00000396       0x5c obj\Release\servo.o
+                0x00000396                servo_left
  .text.UART_Init
-                0x000004bc       0x46 obj\Release\uart.o
-                0x000004bc                UART_Init
+                0x000003f2       0x46 obj\Release\uart.o
+                0x000003f2                UART_Init
  .text.UART_putString
-                0x00000502       0x1a obj\Release\uart.o
-                0x00000502                UART_putString
+                0x00000438       0x1a obj\Release\uart.o
+                0x00000438                UART_putString
  .text.UART_TxNumber
-                0x0000051c      0x168 obj\Release\uart.o
-                0x0000051c                UART_TxNumber
+                0x00000452      0x168 obj\Release\uart.o
+                0x00000452                UART_TxNumber
  .text.UART_TxFloatNumber
-                0x00000684       0x78 obj\Release\uart.o
-                0x00000684                UART_TxFloatNumber
+                0x000005ba       0x78 obj\Release\uart.o
+                0x000005ba                UART_TxFloatNumber
  .text.UART_Printf
-                0x000006fc      0x24c obj\Release\uart.o
-                0x000006fc                UART_Printf
- .text.fplib    0x00000948        0xa h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libm.a(addsf3.o)
-                0x00000948                __subsf3
-                0x0000094a                __addsf3
- .text.fplib    0x00000952       0xc0 h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libm.a(addsf3x.o)
-                0x0000096c                __addsf3x
- .text.fplib    0x00000a12       0x58 h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libm.a(fixunssfsi.o)
-                0x00000a12                __fixunssfsi
- .text.fplib    0x00000a6a       0x7a h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libm.a(floatsisf.o)
-                0x00000a6e                __floatsisf
-                0x00000a6a                __floatunsisf
- .text.fplib    0x00000ae4        0xc h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libm.a(fp_inf.o)
-                0x00000ae4                __fp_inf
- .text.fplib    0x00000af0        0x6 h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libm.a(fp_nan.o)
-                0x00000af0                __fp_nan
- .text.fplib    0x00000af6        0xe h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libm.a(fp_pscA.o)
-                0x00000af6                __fp_pscA
- .text.fplib    0x00000b04        0xe h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libm.a(fp_pscB.o)
-                0x00000b04                __fp_pscB
- .text.fplib    0x00000b12       0x22 h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libm.a(fp_round.o)
-                0x00000b12                __fp_round
- .text.fplib    0x00000b34       0x44 h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libm.a(fp_split3.o)
-                0x00000b34                __fp_split3
-                0x00000b44                __fp_splitA
- .text.fplib    0x00000b78        0xe h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libm.a(fp_zero.o)
-                0x00000b78                __fp_zero
-                0x00000b7a                __fp_szero
- .text.fplib    0x00000b86        0x4 h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libm.a(mulsf3.o)
-                0x00000b86                __mulsf3
- .text.fplib    0x00000b8a       0xc2 h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libm.a(mulsf3x.o)
-                0x00000ba2                __mulsf3_pse
-                0x00000b9e                __mulsf3x
- .text.libgcc   0x00000c4c       0x3e h:/codeblocks/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_mulsi3.o)
-                0x00000c4c                __mulsi3
- .text.libgcc   0x00000c8a       0x44 h:/codeblocks/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
-                0x00000c8a                __udivmodsi4
-                0x00000cce                . = ALIGN (0x2)
+                0x00000632      0x24c obj\Release\uart.o
+                0x00000632                UART_Printf
+ .text.fplib    0x0000087e        0xa h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libm.a(addsf3.o)
+                0x0000087e                __subsf3
+                0x00000880                __addsf3
+ .text.fplib    0x00000888       0xc0 h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libm.a(addsf3x.o)
+                0x000008a2                __addsf3x
+ .text.fplib    0x00000948       0x58 h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libm.a(fixunssfsi.o)
+                0x00000948                __fixunssfsi
+ .text.fplib    0x000009a0       0x7a h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libm.a(floatsisf.o)
+                0x000009a4                __floatsisf
+                0x000009a0                __floatunsisf
+ .text.fplib    0x00000a1a        0xc h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libm.a(fp_inf.o)
+                0x00000a1a                __fp_inf
+ .text.fplib    0x00000a26        0x6 h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libm.a(fp_nan.o)
+                0x00000a26                __fp_nan
+ .text.fplib    0x00000a2c        0xe h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libm.a(fp_pscA.o)
+                0x00000a2c                __fp_pscA
+ .text.fplib    0x00000a3a        0xe h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libm.a(fp_pscB.o)
+                0x00000a3a                __fp_pscB
+ .text.fplib    0x00000a48       0x22 h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libm.a(fp_round.o)
+                0x00000a48                __fp_round
+ .text.fplib    0x00000a6a       0x44 h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libm.a(fp_split3.o)
+                0x00000a6a                __fp_split3
+                0x00000a7a                __fp_splitA
+ .text.fplib    0x00000aae        0xe h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libm.a(fp_zero.o)
+                0x00000aae                __fp_zero
+                0x00000ab0                __fp_szero
+ .text.fplib    0x00000abc        0x4 h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libm.a(mulsf3.o)
+                0x00000abc                __mulsf3
+ .text.fplib    0x00000ac0       0xc2 h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libm.a(mulsf3x.o)
+                0x00000ad8                __mulsf3_pse
+                0x00000ad4                __mulsf3x
+ .text.libgcc   0x00000b82       0x3e h:/codeblocks/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_mulsi3.o)
+                0x00000b82                __mulsi3
+ .text.libgcc   0x00000bc0       0x44 h:/codeblocks/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
+                0x00000bc0                __udivmodsi4
+                0x00000c04                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000cce        0x0 h:/codeblocks/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
-                0x00000cce                exit
-                0x00000cce                _exit
+ .fini9         0x00000c04        0x0 h:/codeblocks/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+                0x00000c04                exit
+                0x00000c04                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -483,15 +505,16 @@ LOAD h:/codeblocks/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000cce        0x4 h:/codeblocks/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .fini0         0x00000c04        0x4 h:/codeblocks/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x00000cd2                _etext = .
+                0x00000c08                _etext = .
 
-.data           0x00800100       0xf8 load address 0x00000cd2
+.data           0x00800100       0xf8 load address 0x00000c08
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
- .data          0x00800100       0xf1 obj\Release\ADC_READ.o
- .data          0x008001f1        0x6 obj\Release\main.o
+ .data          0x00800100       0xe3 obj\Release\ADC_READ.o
+ .data          0x008001e3        0x6 obj\Release\main.o
+ .data          0x008001e9        0xe obj\Release\servo.o
  *(.data*)
  *(.rodata)
  *(.rodata*)
@@ -501,25 +524,23 @@ LOAD h:/codeblocks/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
                 0x008001f8                _edata = .
                 0x008001f8                PROVIDE (__data_end, .)
 
-.bss            0x008001f8        0x3
+.bss            0x008001f8        0x2
                 0x008001f8                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
  *(COMMON)
- COMMON         0x008001f8        0x2 obj\Release\ADC_READ.o
+ COMMON         0x008001f8        0x2 obj\Release\servo.o
                 0x008001f8                pulse_width
- COMMON         0x008001fa        0x1 obj\Release\bno055.o
-                0x008001fa                data
-                0x008001fb                PROVIDE (__bss_end, .)
-                0x00000cd2                __data_load_start = LOADADDR (.data)
-                0x00000dca                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x008001fa                PROVIDE (__bss_end, .)
+                0x00000c08                __data_load_start = LOADADDR (.data)
+                0x00000d00                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x008001fb        0x0
-                0x008001fb                PROVIDE (__noinit_start, .)
+.noinit         0x008001fa        0x0
+                0x008001fa                PROVIDE (__noinit_start, .)
  *(.noinit*)
-                0x008001fb                PROVIDE (__noinit_end, .)
-                0x008001fb                _end = .
-                0x008001fb                PROVIDE (__heap_start, .)
+                0x008001fa                PROVIDE (__noinit_end, .)
+                0x008001fa                _end = .
+                0x008001fa                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
  *(.eeprom*)
@@ -609,15 +630,20 @@ ADC_READ                                          obj\Release\ADC_READ.o
 BNO_Calib                                         obj\Release\bno055.o
 BNO_Euler_data                                    obj\Release\bno055.o
 BNO_Get_ID                                        obj\Release\bno055.o
+BackwardOneStep                                   obj\Release\easydriver.o
 DELAY_ms                                          obj\Release\delay.o
+                                                  obj\Release\easydriver.o
 DELAY_us                                          obj\Release\delay.o
+ForwardOneStep                                    obj\Release\easydriver.o
 UART_Available                                    obj\Release\uart.o
                                                   obj\Release\stepper.o
 UART_Busy                                         obj\Release\uart.o
 UART_Init                                         obj\Release\uart.o
                                                   obj\Release\main.o
 UART_Printf                                       obj\Release\uart.o
+                                                  obj\Release\servo.o
                                                   obj\Release\main.o
+                                                  obj\Release\easydriver.o
                                                   obj\Release\bno055.o
                                                   obj\Release\ADC_READ.o
 UART_PutChar                                      obj\Release\uart.o
@@ -639,13 +665,17 @@ __data_end                                        h:/codeblocks/bin/../lib/gcc/a
 __data_load_start                                 h:/codeblocks/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
 __data_start                                      h:/codeblocks/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
 __do_clear_bss                                    h:/codeblocks/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
+                                                  obj\Release\servo.o
                                                   obj\Release\main.o
+                                                  obj\Release\easydriver.o
                                                   obj\Release\bno055.o
                                                   obj\Release\ADC_READ.o
 __do_copy_data                                    h:/codeblocks/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
                                                   obj\Release\uart.o
                                                   obj\Release\stepper.o
+                                                  obj\Release\servo.o
                                                   obj\Release\main.o
+                                                  obj\Release\easydriver.o
                                                   obj\Release\bno055.o
                                                   obj\Release\ADC_READ.o
 __fixsfsi                                         h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libm.a(fixsfsi.o)
@@ -729,40 +759,48 @@ __vector_9                                        h:/codeblocks/bin/../lib/gcc/a
 __vector_default                                  h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm328p.o
 __vectors                                         h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm328p.o
 _exit                                             h:/codeblocks/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
-data                                              obj\Release\main.o
+data                                              obj\Release\servo.o
+                                                  obj\Release\main.o
+                                                  obj\Release\easydriver.o
                                                   obj\Release\bno055.o
+                                                  obj\Release\ADC_READ.o
+easydriver_init                                   obj\Release\easydriver.o
 exit                                              h:/codeblocks/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
                                                   h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm328p.o
 init_i2c                                          obj\Release\i2c.o
-                                                  obj\Release\main.o
 init_stepper                                      obj\Release\stepper.o
-                                                  obj\Release\main.o
 itoa                                              h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(itoa.o)
                                                   obj\Release\bno055.o
 main                                              obj\Release\main.o
                                                   h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm328p.o
-pulse_width                                       obj\Release\ADC_READ.o
+pulse_width                                       obj\Release\servo.o
 readAck_i2c                                       obj\Release\i2c.o
 readNak_i2c                                       obj\Release\i2c.o
                                                   obj\Release\bno055.o
 repeat_start_i2c                                  obj\Release\i2c.o
                                                   obj\Release\bno055.o
-servo_init                                        obj\Release\ADC_READ.o
+resetEDPins                                       obj\Release\easydriver.o
+servo_init                                        obj\Release\servo.o
                                                   obj\Release\main.o
+servo_left                                        obj\Release\servo.o
+                                                  obj\Release\ADC_READ.o
+servo_right                                       obj\Release\servo.o
+                                                  obj\Release\ADC_READ.o
 start_i2c                                         obj\Release\i2c.o
 start_wait_i2c                                    obj\Release\i2c.o
-                                                  obj\Release\main.o
                                                   obj\Release\bno055.o
+state                                             obj\Release\easydriver.o
 step                                              obj\Release\stepper.o
 step_num                                          obj\Release\stepper.o
 stepper_loop                                      obj\Release\stepper.o
 stop_i2c                                          obj\Release\i2c.o
-                                                  obj\Release\main.o
                                                   obj\Release\bno055.o
 strrev                                            h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(strrev.o)
                                                   h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(itoa.o)
 sunsensor_predict                                 obj\Release\ADC_READ.o
                                                   obj\Release\main.o
+user_input                                        obj\Release\easydriver.o
 write_i2c                                         obj\Release\i2c.o
-                                                  obj\Release\main.o
                                                   obj\Release\bno055.o
+x                                                 obj\Release\easydriver.o
+y                                                 obj\Release\easydriver.o
