@@ -9,6 +9,8 @@
 //#include "bno055.h"
 //#include "i2c.h"
 #include "servo.h"
+#include "base_servo.h"
+
 /*************************************************************************************/
 
 
@@ -48,34 +50,41 @@ void sunsensor_predict()
 	ADCvalue3 = ADC_READ(2);
 	ADCvalue2 = ADC_READ(3);	//for pcb
 
-	UART_Printf("\n\rADC0: %d", ADCvalue0);
-	UART_Printf("\n\rADC1: %d", ADCvalue1);
 
-	UART_Printf("\n\rADC2: %d", ADCvalue2);
-	UART_Printf("\n\rADC3: %d", ADCvalue3);
 
-	UART_Printf("\n\r*************************************************************\n\r");
 
 	min_value1 = MIN_FOUR(ADCvalue0, ADCvalue1, ADCvalue2, ADCvalue3);
-	if (min_value1 < 400)
+	if (min_value1 < 800)
 	{
 		if (min_value1 == ADCvalue0)
 		{
 			min_value = MIN(ADCvalue1, ADCvalue3);
 			if ((ADCvalue1 == 0) && (ADCvalue2 == 0) && (ADCvalue3 == 0))
 			{
-				UART_Printf("\n\rLIGHT HAS BEEN FOUND\n\r");
+
 			}
 			else if (min_value == ADCvalue1)
 			{
+                    UART_Printf("\n\rADC");
+                    UART_Printf(" %d", ADCvalue0);
+                    UART_Printf(" %d", ADCvalue1);
+                    UART_Printf(" %d", ADCvalue2);
+                    UART_Printf(" %d", ADCvalue3);
                     servo_right();
-					UART_Printf("\n\r servo right\n\r");\
+
 
 
 			}
 			else if (min_value == ADCvalue3)
 			{
-				UART_Printf("\n\r stepper right\n\r");
+                UART_Printf("\n\rADC");
+                UART_Printf(" %d", ADCvalue0);
+                UART_Printf(" %d", ADCvalue1);
+                UART_Printf(" %d", ADCvalue2);
+                UART_Printf(" %d", ADCvalue3);
+
+			    base_servo_left();
+
 			}
 		}
 		else if (min_value1 == ADCvalue1)
@@ -83,18 +92,29 @@ void sunsensor_predict()
 			min_value = MIN(ADCvalue0, ADCvalue2);
 			if ((ADCvalue0 == 0) && (ADCvalue2 == 0) && (ADCvalue3 == 0))
 			{
-				UART_Printf("\n\rLIGHT HAS BEEN FOUND\n\r");
+
 			}
 			else if (min_value == ADCvalue0)
 			{
+                UART_Printf("\n\rADC");
+                UART_Printf(" %d", ADCvalue0);
+                UART_Printf(" %d", ADCvalue1);
+                UART_Printf(" %d", ADCvalue2);
+                UART_Printf(" %d", ADCvalue3);
+
                 servo_right();
-				UART_Printf("\n\r servo right\n\r");
+
 			}
 			else if (min_value == ADCvalue3)
 			{
+                UART_Printf("\n\rADC");
+                UART_Printf(" %d", ADCvalue0);
+                UART_Printf(" %d", ADCvalue1);
+                UART_Printf(" %d", ADCvalue2);
+                UART_Printf(" %d", ADCvalue3);
 			   // BNO_Euler_data();
+                base_servo_right();
 
-				UART_Printf("\n\r stepper left\n\r");
 			}
 		}
 		else if (min_value1 == ADCvalue2)
@@ -102,18 +122,30 @@ void sunsensor_predict()
 			min_value = MIN(ADCvalue1, ADCvalue3);
 			if ((ADCvalue0 == 0) && (ADCvalue1 == 0) && (ADCvalue3 == 0))
 			{
-				UART_Printf("\n\rLIGHT HAS BEEN FOUND\n\r");
+
 			}
 			else if (min_value == ADCvalue3)
 			{
+                UART_Printf("\n\rADC");
+                UART_Printf(" %d", ADCvalue0);
+                UART_Printf(" %d", ADCvalue1);
+                UART_Printf(" %d", ADCvalue2);
+                UART_Printf(" %d", ADCvalue3);
+
 				servo_left();
 
-				UART_Printf("\n\r servo left\n\r");
+
 			}
 			else if (min_value == ADCvalue1)
 			{
+                UART_Printf("\n\rADC");
+                UART_Printf(" %d", ADCvalue0);
+                UART_Printf(" %d", ADCvalue1);
+                UART_Printf(" %d", ADCvalue2);
+                UART_Printf(" %d", ADCvalue3);
 			    //BNO_Euler_data();
-				UART_Printf("\n\r stepper left\n\r");
+			    base_servo_right();
+
 			}
 		}
 		else if (min_value1 == ADCvalue3)
@@ -121,22 +153,33 @@ void sunsensor_predict()
 			min_value = MIN(ADCvalue2, ADCvalue0);
 			if ((ADCvalue1 == 0) && (ADCvalue2 == 0) && (ADCvalue0 == 0))
 			{
-				UART_Printf("\n\rLIGHT HAS BEEN FOUND\n\r");
+
 			}
 			else if (min_value == ADCvalue2)
 			{
+                UART_Printf("\n\rADC");
+                UART_Printf(" %d", ADCvalue0);
+                UART_Printf(" %d", ADCvalue1);
+                UART_Printf(" %d", ADCvalue2);
+                UART_Printf(" %d", ADCvalue3);
 				servo_left();
-				UART_Printf("\n\r servo left\n\r");
+
 			}
 			else if (min_value == ADCvalue0)
 			{
+                UART_Printf("\n\rADC");
+                UART_Printf(" %d", ADCvalue0);
+                UART_Printf(" %d", ADCvalue1);
+                UART_Printf(" %d", ADCvalue2);
+                UART_Printf(" %d", ADCvalue3);
 
-				UART_Printf("\n\r stepper right\n\r");
+                base_servo_left();
+
 			}
 		}
 	}
 	else
 	{
-		UART_Printf("\n\r NOTHING DETECTED\n\r");
+
 	}
 }

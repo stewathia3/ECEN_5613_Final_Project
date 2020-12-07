@@ -59,7 +59,7 @@ void BNO_Calib(void)
 		calib = readNak_i2c();
 		stop_i2c();
 		itoa(calib, String_Data, 10);
-		UART_Printf(" \n\rR: %x",calib);
+		UART_Printf(" \n\rCAlib: %x",calib);
 
     }
 
@@ -94,8 +94,8 @@ void BNO_Euler_data()
 		float Euler_H = (float)(Euler_H_Raw) * angle_scale;
 
 		itoa(Euler_H, String_Data, 10);			//Convert integer to string, radix=10
-
-		UART_Printf("Y: %s",String_Data);
+        UART_Printf(",EULER");
+		UART_Printf(" %s",String_Data);
 		//UART_Printf(String_Data);
 
 		start_wait_i2c(BNO055_ADDRESS+I2C_WRITE);	//Set device address and read mode
@@ -116,7 +116,7 @@ void BNO_Euler_data()
 
 		itoa(Euler_R, String_Data, 10);  //convert integer to string, radix=10
 
-		UART_Printf(" R: %s",String_Data);
+		UART_Printf(" %s",String_Data);
 		//nRF_Put_String(String_Data);
 
 		start_wait_i2c(BNO055_ADDRESS+I2C_WRITE);	//Set device address and read mode
@@ -137,5 +137,5 @@ void BNO_Euler_data()
 
 		itoa(Euler_P, String_Data, 10);  //convert integer to string, radix=10
 
-		UART_Printf("\n\rP: %s",String_Data);
+		UART_Printf(" %s",String_Data);
 }

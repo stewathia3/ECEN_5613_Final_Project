@@ -17,7 +17,8 @@ void servo_init()
 	DDRD |= _BV(2);
 	// OCR1A (port B, 1) as output
 	DDRB |= _BV(1);
-	TCCR1A |= 1 << WGM11 | 1 << COM1A1 | 1 << COM1A0;	// Inverted mode
+    DDRB |= _BV(2);
+	TCCR1A |= 1 << WGM11 | 1 << COM1A1 | 1 << COM1A0| 1 << COM1B1 | 1 << COM1B0;	// Inverted mode
 	TCCR1B |= 1 << WGM12 | 1 << WGM13 | 1 << CS11;	// prescaler is 8
 	ICR1 = 39999;
 	pulse_width = 3000;	// for 1.5 ms pulse width!
@@ -30,11 +31,11 @@ void servo_left()
 	pulse_width += 200;
 	if (pulse_width > 4000)
 	{
-		UART_Printf("\n\r Do nothing");
 	}
 	else
 	{
-		//BNO_Euler_data();
+
+		BNO_Euler_data();
 		OCR1A = ICR1 - pulse_width;
 		_delay_ms(100);
 	}
@@ -46,11 +47,12 @@ void servo_right()
 	pulse_width -= 200;
 	if (pulse_width < 2200)
 	{
-		UART_Printf("\n\r Do nothing");
+
 	}
 	else
 	{
-		//BNO_Euler_data();
+
+		BNO_Euler_data();
 		OCR1A = ICR1 - pulse_width;
 	}
 }
