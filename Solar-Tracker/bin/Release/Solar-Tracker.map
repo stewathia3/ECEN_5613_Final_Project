@@ -48,12 +48,8 @@ h:/codeblocks/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodhi4.o)
 Allocating common symbols
 Common symbol       size              file
 
-x                   0x2               obj\Release\easydriver.o
-state               0x2               obj\Release\easydriver.o
-user_input          0x1               obj\Release\easydriver.o
 pulse_width         0x2               obj\Release\servo.o
 data                0x1               obj\Release\ADC_READ.o
-y                   0x2               obj\Release\easydriver.o
 
 Discarded input sections
 
@@ -75,18 +71,6 @@ Discarded input sections
                 0x00000000        0x0 obj\Release\delay.o
  .text.DELAY_ms
                 0x00000000        0x0 obj\Release\delay.o
- .text          0x00000000        0x0 obj\Release\easydriver.o
- .data          0x00000000        0x0 obj\Release\easydriver.o
- .bss           0x00000000        0x0 obj\Release\easydriver.o
- .text.resetEDPins
-                0x00000000        0x0 obj\Release\easydriver.o
- .text.easydriver_init
-                0x00000000        0x0 obj\Release\easydriver.o
- .text.BackwardOneStep
-                0x00000000        0x0 obj\Release\easydriver.o
- .text.ForwardOneStep
-                0x00000000        0x0 obj\Release\easydriver.o
- COMMON         0x00000000        0x0 obj\Release\easydriver.o
  .text          0x00000000        0x0 obj\Release\fuse.o
  .data          0x00000000        0x0 obj\Release\fuse.o
  .bss           0x00000000        0x0 obj\Release\fuse.o
@@ -210,7 +194,6 @@ LOAD obj\Release\ADC_READ.o
 LOAD obj\Release\base_servo.o
 LOAD obj\Release\bno055.o
 LOAD obj\Release\delay.o
-LOAD obj\Release\easydriver.o
 LOAD obj\Release\fuse.o
 LOAD obj\Release\i2c.o
 LOAD obj\Release\main.o
@@ -403,9 +386,9 @@ LOAD h:/codeblocks/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
  .text.ADC_READ
                 0x00000108       0x52 obj\Release\ADC_READ.o
                 0x00000108                ADC_READ
- .text.sunsensor_predict
+ .text.quadphoto_predict
                 0x0000015a      0x40e obj\Release\ADC_READ.o
-                0x0000015a                sunsensor_predict
+                0x0000015a                quadphoto_predict
  .text.base_servo_right
                 0x00000568       0x70 obj\Release\base_servo.o
                 0x00000568                base_servo_right
@@ -660,11 +643,8 @@ BNO_Euler_data                                    obj\Release\bno055.o
                                                   obj\Release\servo.o
                                                   obj\Release\base_servo.o
 BNO_Get_ID                                        obj\Release\bno055.o
-BackwardOneStep                                   obj\Release\easydriver.o
 DELAY_ms                                          obj\Release\delay.o
-                                                  obj\Release\easydriver.o
 DELAY_us                                          obj\Release\delay.o
-ForwardOneStep                                    obj\Release\easydriver.o
 UART_Available                                    obj\Release\uart.o
                                                   obj\Release\stepper.o
 UART_Busy                                         obj\Release\uart.o
@@ -672,7 +652,6 @@ UART_Init                                         obj\Release\uart.o
                                                   obj\Release\main.o
 UART_Printf                                       obj\Release\uart.o
                                                   obj\Release\main.o
-                                                  obj\Release\easydriver.o
                                                   obj\Release\bno055.o
                                                   obj\Release\ADC_READ.o
 UART_PutChar                                      obj\Release\uart.o
@@ -696,7 +675,6 @@ __data_start                                      h:/codeblocks/bin/../lib/gcc/a
 __do_clear_bss                                    h:/codeblocks/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
                                                   obj\Release\servo.o
                                                   obj\Release\main.o
-                                                  obj\Release\easydriver.o
                                                   obj\Release\bno055.o
                                                   obj\Release\base_servo.o
                                                   obj\Release\ADC_READ.o
@@ -704,7 +682,6 @@ __do_copy_data                                    h:/codeblocks/bin/../lib/gcc/a
                                                   obj\Release\uart.o
                                                   obj\Release\stepper.o
                                                   obj\Release\main.o
-                                                  obj\Release\easydriver.o
                                                   obj\Release\bno055.o
                                                   obj\Release\ADC_READ.o
 __fixsfsi                                         h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libm.a(fixsfsi.o)
@@ -794,11 +771,9 @@ base_servo_right                                  obj\Release\base_servo.o
                                                   obj\Release\ADC_READ.o
 data                                              obj\Release\servo.o
                                                   obj\Release\main.o
-                                                  obj\Release\easydriver.o
                                                   obj\Release\bno055.o
                                                   obj\Release\base_servo.o
                                                   obj\Release\ADC_READ.o
-easydriver_init                                   obj\Release\easydriver.o
 exit                                              h:/codeblocks/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
                                                   h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm328p.o
 init_i2c                                          obj\Release\i2c.o
@@ -811,12 +786,13 @@ k                                                 obj\Release\base_servo.o
 main                                              obj\Release\main.o
                                                   h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm328p.o
 pulse_width                                       obj\Release\servo.o
+quadphoto_predict                                 obj\Release\ADC_READ.o
+                                                  obj\Release\main.o
 readAck_i2c                                       obj\Release\i2c.o
 readNak_i2c                                       obj\Release\i2c.o
                                                   obj\Release\bno055.o
 repeat_start_i2c                                  obj\Release\i2c.o
                                                   obj\Release\bno055.o
-resetEDPins                                       obj\Release\easydriver.o
 servo_init                                        obj\Release\servo.o
                                                   obj\Release\main.o
 servo_left                                        obj\Release\servo.o
@@ -827,7 +803,6 @@ start_i2c                                         obj\Release\i2c.o
 start_wait_i2c                                    obj\Release\i2c.o
                                                   obj\Release\main.o
                                                   obj\Release\bno055.o
-state                                             obj\Release\easydriver.o
 step                                              obj\Release\stepper.o
 step_num                                          obj\Release\stepper.o
 stepper_loop                                      obj\Release\stepper.o
@@ -836,11 +811,6 @@ stop_i2c                                          obj\Release\i2c.o
                                                   obj\Release\bno055.o
 strrev                                            h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(strrev.o)
                                                   h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(itoa.o)
-sunsensor_predict                                 obj\Release\ADC_READ.o
-                                                  obj\Release\main.o
-user_input                                        obj\Release\easydriver.o
 write_i2c                                         obj\Release\i2c.o
                                                   obj\Release\main.o
                                                   obj\Release\bno055.o
-x                                                 obj\Release\easydriver.o
-y                                                 obj\Release\easydriver.o

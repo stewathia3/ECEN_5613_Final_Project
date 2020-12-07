@@ -47,6 +47,10 @@
 		</Unit>
 		<Unit filename="ADC_READ.h" />
 		<Unit filename="Test_BNO055.h" />
+		<Unit filename="base_servo.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="base_servo.h" />
 		<Unit filename="bno055.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -55,10 +59,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="delay.h" />
-		<Unit filename="easydriver.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="easydriver.h" />
 		<Unit filename="fuse.c">
 			<Option compilerVar="CC" />
 		</Unit>

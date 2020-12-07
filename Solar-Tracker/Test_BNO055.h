@@ -152,9 +152,7 @@
 
 //Function Prototypes
 void AVR_Init(void);
-//void UART_Init(void);
-//void UART_Tx(unsigned char data);
-//void UART_Put_String(char *s);
+
 void BNO_Get_ID(void);
 
 //Store TWI data

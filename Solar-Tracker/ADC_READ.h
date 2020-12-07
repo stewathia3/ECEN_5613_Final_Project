@@ -12,7 +12,18 @@
 
 #define MIN(a,b) ((a) < (b)  ? (a) : (b) )
 #define MIN_FOUR(a,b,c,d) MIN(a,(MIN(b,MIN(c,d))))
-void servo_init();
+
+/****************************************************************************************************************
+@function: int ADC_READ(uint8_t adcpin): read adc value at the pin
+@param :    adcpin : integer value , adc pin to which the ADC input connected
+@return:    integer value that it read from ADC
+*****************************************************************************************************/
 int ADC_READ(uint8_t adcpin);
-void sunsensor_predict();
+
+/****************************************************************************************************************
+@function: void quadphoto_predict(): get values from quad photodiode
+@param :    void
+@return:    void
+*****************************************************************************************************/
+void quadphoto_predict();
 #endif // ADC_READ_H_INCLUDED

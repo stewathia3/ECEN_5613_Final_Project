@@ -23,37 +23,38 @@ many functions were added as required for the implementation
 #define I2C_WRITE   0
 
 
-/**
+/******************************************************************************************************************
  @brief initializes the i2c interface
  @return none
- */
+ ***********************************************************************************************************************/
  void init_i2c(void);
 
 
-/**
+/*************************************************************************************************************************
  @brief stops the i2c interface
  @return none
- */
+ ***********************************************************************************************************************/
  void stop_i2c(void);
 
 
 
-/**
+/***********************************************************************************************************************
  @brief Sends a start condition and transfer direction
 
  @param    address address of the i2c device
  @return   0   if device is accessible
  @return   1   if device is not accessible
- */
+  ***********************************************************************************************************************/
+
  unsigned char start_i2c(unsigned char address);
 
 
-/**
+/***************************************************************************************************************
  @brief sends a repeated start condition and sends address
  @param   address address and transfer direction of I2C device
  @return   0   if device is accessible
  @return   1   if device is not accessible
- */
+ ***************************************************************************************************************/
  unsigned char repeat_start_i2c(unsigned char address);
 
 
