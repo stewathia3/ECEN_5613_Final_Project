@@ -11,6 +11,7 @@ volatile unsigned char step_num = 1;
 void step(unsigned char direction);
 void init_stepper()
 {
+    //four coils of stepper set as output
 	DDRB |= _BV(AIN1);
 	DDRD |= _BV(AIN2);
 	DDRD |= _BV(BIN1);
@@ -76,7 +77,7 @@ void step(unsigned char direction)
 {
 	if (step_num == 1)
 	{
-		// 1010
+		// 1010 //by setting direction for coils
 		PORTD |= _BV(AIN1);
 		PORTD &= ~_BV(AIN2);
 		PORTD |= _BV(BIN1);
@@ -93,7 +94,7 @@ void step(unsigned char direction)
 	}
 	else if (step_num == 2)
 	{
-		// 0110
+		// 0110 //by setting direction for coils
 
 		PORTD &= ~_BV(AIN1);
 		PORTD |= _BV(AIN2);
@@ -111,7 +112,7 @@ void step(unsigned char direction)
 	}
 	else if (step_num == 3)
 	{
-		// 0101
+		// 0101 ///by setting direction for coils
 		PORTD &= ~_BV(AIN1);
 		PORTD |= _BV(AIN2);
 		PORTD &= ~_BV(BIN1);
@@ -130,7 +131,7 @@ void step(unsigned char direction)
 	{
 		// (step_num == 4)
 
-		// 1001
+		// 1001 ///by setting direction for coils
 		PORTD |= _BV(AIN1);
 		PORTD &= ~_BV(AIN2);
 		PORTD &= ~_BV(BIN1);

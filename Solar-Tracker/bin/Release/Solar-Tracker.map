@@ -295,7 +295,7 @@ LOAD h:/codeblocks/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000     0x13a0
+.text           0x00000000     0x1370
  *(.vectors)
  .vectors       0x00000000       0x68 h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm328p.o
                 0x00000000                __vectors
@@ -387,111 +387,111 @@ LOAD h:/codeblocks/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
                 0x00000108       0x52 obj\Release\ADC_READ.o
                 0x00000108                ADC_READ
  .text.quadphoto_predict
-                0x0000015a      0x40e obj\Release\ADC_READ.o
+                0x0000015a      0x3de obj\Release\ADC_READ.o
                 0x0000015a                quadphoto_predict
  .text.base_servo_right
-                0x00000568       0x70 obj\Release\base_servo.o
-                0x00000568                base_servo_right
+                0x00000538       0x70 obj\Release\base_servo.o
+                0x00000538                base_servo_right
  .text.base_servo_left
-                0x000005d8       0x7c obj\Release\base_servo.o
-                0x000005d8                base_servo_left
+                0x000005a8       0x7c obj\Release\base_servo.o
+                0x000005a8                base_servo_left
  .text.BNO_Euler_data
-                0x00000654      0x1fa obj\Release\bno055.o
-                0x00000654                BNO_Euler_data
+                0x00000624      0x1fa obj\Release\bno055.o
+                0x00000624                BNO_Euler_data
  .text.BNO_Calib
-                0x0000084e       0xbc obj\Release\bno055.o
-                0x0000084e                BNO_Calib
+                0x0000081e       0xbc obj\Release\bno055.o
+                0x0000081e                BNO_Calib
  .text.init_i2c
-                0x0000090a       0x12 obj\Release\i2c.o
-                0x0000090a                init_i2c
+                0x000008da       0x12 obj\Release\i2c.o
+                0x000008da                init_i2c
  .text.start_i2c
-                0x0000091c       0x4c obj\Release\i2c.o
-                0x0000091c                start_i2c
+                0x000008ec       0x4c obj\Release\i2c.o
+                0x000008ec                start_i2c
  .text.start_wait_i2c
-                0x00000968       0x50 obj\Release\i2c.o
-                0x00000968                start_wait_i2c
+                0x00000938       0x50 obj\Release\i2c.o
+                0x00000938                start_wait_i2c
  .text.repeat_start_i2c
-                0x000009b8        0x6 obj\Release\i2c.o
-                0x000009b8                repeat_start_i2c
+                0x00000988        0x6 obj\Release\i2c.o
+                0x00000988                repeat_start_i2c
  .text.stop_i2c
-                0x000009be       0x10 obj\Release\i2c.o
-                0x000009be                stop_i2c
+                0x0000098e       0x10 obj\Release\i2c.o
+                0x0000098e                stop_i2c
  .text.write_i2c
-                0x000009ce       0x24 obj\Release\i2c.o
-                0x000009ce                write_i2c
+                0x0000099e       0x24 obj\Release\i2c.o
+                0x0000099e                write_i2c
  .text.readNak_i2c
-                0x000009f2       0x14 obj\Release\i2c.o
-                0x000009f2                readNak_i2c
- .text.main     0x00000a06       0x84 obj\Release\main.o
-                0x00000a06                main
+                0x000009c2       0x14 obj\Release\i2c.o
+                0x000009c2                readNak_i2c
+ .text.main     0x000009d6       0x84 obj\Release\main.o
+                0x000009d6                main
  .text.servo_init
-                0x00000a8a       0x44 obj\Release\servo.o
-                0x00000a8a                servo_init
+                0x00000a5a       0x44 obj\Release\servo.o
+                0x00000a5a                servo_init
  .text.servo_right
-                0x00000ace       0x3c obj\Release\servo.o
-                0x00000ace                servo_right
+                0x00000a9e       0x3c obj\Release\servo.o
+                0x00000a9e                servo_right
  .text.servo_left
-                0x00000b0a       0x4e obj\Release\servo.o
-                0x00000b0a                servo_left
+                0x00000ada       0x4e obj\Release\servo.o
+                0x00000ada                servo_left
  .text.UART_Init
-                0x00000b58       0x46 obj\Release\uart.o
-                0x00000b58                UART_Init
+                0x00000b28       0x46 obj\Release\uart.o
+                0x00000b28                UART_Init
  .text.UART_putString
-                0x00000b9e       0x1a obj\Release\uart.o
-                0x00000b9e                UART_putString
+                0x00000b6e       0x1a obj\Release\uart.o
+                0x00000b6e                UART_putString
  .text.UART_TxNumber
-                0x00000bb8      0x168 obj\Release\uart.o
-                0x00000bb8                UART_TxNumber
+                0x00000b88      0x168 obj\Release\uart.o
+                0x00000b88                UART_TxNumber
  .text.UART_TxFloatNumber
-                0x00000d20       0x78 obj\Release\uart.o
-                0x00000d20                UART_TxFloatNumber
+                0x00000cf0       0x78 obj\Release\uart.o
+                0x00000cf0                UART_TxFloatNumber
  .text.UART_Printf
-                0x00000d98      0x24c obj\Release\uart.o
-                0x00000d98                UART_Printf
- .text.fplib    0x00000fe4        0xa h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libm.a(addsf3.o)
-                0x00000fe4                __subsf3
-                0x00000fe6                __addsf3
- .text.fplib    0x00000fee       0xc0 h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libm.a(addsf3x.o)
-                0x00001008                __addsf3x
- .text.fplib    0x000010ae        0xa h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libm.a(fixsfsi.o)
-                0x000010ae                __fixsfsi
- .text.fplib    0x000010b8       0x58 h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libm.a(fixunssfsi.o)
-                0x000010b8                __fixunssfsi
- .text.fplib    0x00001110       0x7a h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libm.a(floatsisf.o)
-                0x00001114                __floatsisf
-                0x00001110                __floatunsisf
- .text.fplib    0x0000118a        0xc h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libm.a(fp_inf.o)
-                0x0000118a                __fp_inf
- .text.fplib    0x00001196        0x6 h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libm.a(fp_nan.o)
-                0x00001196                __fp_nan
- .text.fplib    0x0000119c        0xe h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libm.a(fp_pscA.o)
-                0x0000119c                __fp_pscA
- .text.fplib    0x000011aa        0xe h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libm.a(fp_pscB.o)
-                0x000011aa                __fp_pscB
- .text.fplib    0x000011b8       0x22 h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libm.a(fp_round.o)
-                0x000011b8                __fp_round
- .text.fplib    0x000011da       0x44 h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libm.a(fp_split3.o)
-                0x000011da                __fp_split3
-                0x000011ea                __fp_splitA
- .text.fplib    0x0000121e        0xe h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libm.a(fp_zero.o)
-                0x0000121e                __fp_zero
-                0x00001220                __fp_szero
- .text.fplib    0x0000122c        0x4 h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libm.a(mulsf3.o)
-                0x0000122c                __mulsf3
- .text.fplib    0x00001230       0xc2 h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libm.a(mulsf3x.o)
-                0x00001248                __mulsf3_pse
-                0x00001244                __mulsf3x
- .text.libgcc   0x000012f2       0x3e h:/codeblocks/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_mulsi3.o)
-                0x000012f2                __mulsi3
- .text.libgcc   0x00001330       0x44 h:/codeblocks/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
-                0x00001330                __udivmodsi4
- .text.libgcc   0x00001374       0x28 h:/codeblocks/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodhi4.o)
-                0x00001374                __udivmodhi4
-                0x0000139c                . = ALIGN (0x2)
+                0x00000d68      0x24c obj\Release\uart.o
+                0x00000d68                UART_Printf
+ .text.fplib    0x00000fb4        0xa h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libm.a(addsf3.o)
+                0x00000fb4                __subsf3
+                0x00000fb6                __addsf3
+ .text.fplib    0x00000fbe       0xc0 h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libm.a(addsf3x.o)
+                0x00000fd8                __addsf3x
+ .text.fplib    0x0000107e        0xa h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libm.a(fixsfsi.o)
+                0x0000107e                __fixsfsi
+ .text.fplib    0x00001088       0x58 h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libm.a(fixunssfsi.o)
+                0x00001088                __fixunssfsi
+ .text.fplib    0x000010e0       0x7a h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libm.a(floatsisf.o)
+                0x000010e4                __floatsisf
+                0x000010e0                __floatunsisf
+ .text.fplib    0x0000115a        0xc h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libm.a(fp_inf.o)
+                0x0000115a                __fp_inf
+ .text.fplib    0x00001166        0x6 h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libm.a(fp_nan.o)
+                0x00001166                __fp_nan
+ .text.fplib    0x0000116c        0xe h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libm.a(fp_pscA.o)
+                0x0000116c                __fp_pscA
+ .text.fplib    0x0000117a        0xe h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libm.a(fp_pscB.o)
+                0x0000117a                __fp_pscB
+ .text.fplib    0x00001188       0x22 h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libm.a(fp_round.o)
+                0x00001188                __fp_round
+ .text.fplib    0x000011aa       0x44 h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libm.a(fp_split3.o)
+                0x000011aa                __fp_split3
+                0x000011ba                __fp_splitA
+ .text.fplib    0x000011ee        0xe h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libm.a(fp_zero.o)
+                0x000011ee                __fp_zero
+                0x000011f0                __fp_szero
+ .text.fplib    0x000011fc        0x4 h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libm.a(mulsf3.o)
+                0x000011fc                __mulsf3
+ .text.fplib    0x00001200       0xc2 h:/codeblocks/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libm.a(mulsf3x.o)
+                0x00001218                __mulsf3_pse
+                0x00001214                __mulsf3x
+ .text.libgcc   0x000012c2       0x3e h:/codeblocks/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_mulsi3.o)
+                0x000012c2                __mulsi3
+ .text.libgcc   0x00001300       0x44 h:/codeblocks/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
+                0x00001300                __udivmodsi4
+ .text.libgcc   0x00001344       0x28 h:/codeblocks/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodhi4.o)
+                0x00001344                __udivmodhi4
+                0x0000136c                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x0000139c        0x0 h:/codeblocks/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
-                0x0000139c                exit
-                0x0000139c                _exit
+ .fini9         0x0000136c        0x0 h:/codeblocks/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+                0x0000136c                exit
+                0x0000136c                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -510,11 +510,11 @@ LOAD h:/codeblocks/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x0000139c        0x4 h:/codeblocks/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .fini0         0x0000136c        0x4 h:/codeblocks/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x000013a0                _etext = .
+                0x00001370                _etext = .
 
-.data           0x00800100       0x2e load address 0x000013a0
+.data           0x00800100       0x2e load address 0x00001370
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800100        0xa obj\Release\ADC_READ.o
@@ -542,8 +542,8 @@ LOAD h:/codeblocks/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
  COMMON         0x00800133        0x2 obj\Release\servo.o
                 0x00800133                pulse_width
                 0x00800135                PROVIDE (__bss_end, .)
-                0x000013a0                __data_load_start = LOADADDR (.data)
-                0x000013ce                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00001370                __data_load_start = LOADADDR (.data)
+                0x0000139e                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x00800135        0x0
                 0x00800135                PROVIDE (__noinit_start, .)

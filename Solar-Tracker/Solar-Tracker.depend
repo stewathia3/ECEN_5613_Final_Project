@@ -144,7 +144,7 @@
 	<intrinsics.h>
 	<avr/interrupt.h>
 
-1607316524 source:e:\ecen_5613_final_project\solar-tracker\adc_read.c
+1607465280 source:e:\ecen_5613_final_project\solar-tracker\adc_read.c
 	<avr/io.h>
 	"uart.h"
 	<avr/sfr_defs.h>
@@ -175,7 +175,7 @@
 	"bno055.h"
 	"i2c.h"
 
-1607315857 source:e:\ecen_5613_final_project\solar-tracker\servo.c
+1607465523 source:e:\ecen_5613_final_project\solar-tracker\servo.c
 	<avr/io.h>
 	"uart.h"
 	<avr/sfr_defs.h>
