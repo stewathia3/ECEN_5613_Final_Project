@@ -4,8 +4,6 @@
  *     Author: maitreyee Rao
  */
 
-/*
- */
 #include <avr/io.h>
 #include "uart.h"
 #include <avr/sfr_defs.h>
@@ -42,10 +40,10 @@ int main(void)
 	stop_i2c();
 	_delay_ms(10);
 
-	BNO_Calib();
+	BNO_Calib(); //calibrate IMU
 	while (1)
 	{
-		quadphoto_predict();
+		quadphoto_predict(); //enter SUN TRACKING MODE
 		_delay_ms(1000);
 	}
 }

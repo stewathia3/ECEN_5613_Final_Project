@@ -1,3 +1,10 @@
+/*
+ *
+ *
+ *     Author: maitreyee Rao
+ *  Find definitions for the functions in base_servo.h file
+ */
+
 #include "base_servo.h"
 
 int j = 0;	// Keep track of base servo turning right 90 degrees

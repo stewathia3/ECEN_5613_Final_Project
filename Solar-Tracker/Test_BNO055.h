@@ -1,3 +1,11 @@
+
+/*************************************************************************
+* Title:    C include file for the I2C interface is included in i2c.c
+* Author:   Maitreyee Rao
+* Reference :  This file was built with reference to
+https://github.com/adafruit/Adafruit_BNO055/blob/master/Adafruit_BNO055.h
+**************************************************************************/
+
 #ifndef TEST_BNO055_H_INCLUDED
 #define TEST_BNO055_H_INCLUDED
 
@@ -150,8 +158,7 @@
 #define OPERATION_MODE_NDOF_FMC_OFF  0x0B
 #define OPERATION_MODE_NDOF          0x0C
 
-//Function Prototypes
-void AVR_Init(void);
+
 
 void BNO_Get_ID(void);
 

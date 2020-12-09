@@ -1,3 +1,10 @@
+/*
+ *
+ *
+ *     Author:Sanjana Tewathia
+ *  Find definitions for the functions in stepper.h file
+ */
+
 #include <avr/io.h>
 #include "uart.h"
 #include <avr/sfr_defs.h>

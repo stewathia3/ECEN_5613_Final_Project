@@ -1,11 +1,10 @@
-/*
- *
- *  Created on: Nov 24, 2020
- *      Author: maitreyee
- *    code was referenced and modiefied from
- https://exploreembedded.com/wiki/Serial_UART_Interface_with_AVR
- */
 
+/*************************************************************************
+* Title:    C include file for the UART interface is included in uart.c
+ * Author: maitreyee
+ * Reference:   code was referenced and modiefied from
+ https://exploreembedded.com/wiki/Serial_UART_Interface_with_AVR
+**************************************************************************/
 
 #ifndef _UART_H
 #define _UART_H

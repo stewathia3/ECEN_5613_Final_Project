@@ -1,3 +1,9 @@
+/*************************************************************************
+* Title:    C include file for the stepper interface is included in stepper.c
+* Author:   Sanjana Tewathia
+
+
+**************************************************************************/
 #ifndef STEPPER_H_INCLUDED
 #define STEPPER_H_INCLUDED
 #define AIN1 5

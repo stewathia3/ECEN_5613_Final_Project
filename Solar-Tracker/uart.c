@@ -1,3 +1,11 @@
+/*
+ *
+ *
+ *     Author: maitreyee Rao
+ *  Find definitions for the functions in uart.h file
+ */
+
+
 #include <stdarg.h>
 #include "uart.h"
 #include <avr\io.h>

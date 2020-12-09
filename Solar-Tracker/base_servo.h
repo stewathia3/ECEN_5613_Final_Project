@@ -1,8 +1,15 @@
+/*************************************************************************
+* Title:    C include file for the base_servo interface is included in base_servo.c
+* Author:   Maitreyee Rao
+
+
+**************************************************************************/
+
+
+
+
 #ifndef BASE_SERVO_H_INCLUDED
 #define BASE_SERVO_H_INCLUDED
-
-#ifndef SERVO_1_H_INCLUDED
-#define SERVO_1_H_INCLUDED
 
 #include <avr/io.h>
 #include "uart.h"
@@ -26,8 +33,6 @@ void base_servo_left();
 @return:   void
 *****************************************************************************************************/
 void base_servo_right();
-
-#endif // SERVO_1_H_INCLUDED
 
 
 #endif // BASE_SERVO_H_INCLUDED

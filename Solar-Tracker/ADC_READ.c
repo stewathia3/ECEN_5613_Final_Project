@@ -1,3 +1,14 @@
+/*
+ *
+ *
+ *     Author: maitreyee Rao
+ *  Find definitions for the functions in ADC_READ.h file
+ */
+
+
+
+
+
 #include <avr/io.h>
 #include "uart.h"
 #include <avr/sfr_defs.h>

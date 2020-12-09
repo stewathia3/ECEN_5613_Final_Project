@@ -1,3 +1,13 @@
+/*
+ *
+ *
+ *     Author: maitreyee Rao
+ *  Find definitions for the functions in i2c.h file
+ */
+
+
+
+
 #include <inttypes.h>
 #include <compat/twi.h>
 #include "i2c.h"
@@ -8,7 +18,7 @@
 void init_i2c(void)
 {
 	TWSR = 0x00;	//set presca1er bits to zero
-	TWBR = 0x46;	//SCL frequency is 50K for 16Mhz
+	TWBR = 0x46;	//SCL frequency is 100K for 16Mhz
 	TWCR = 0x04;	//enab1e TWI module
 }
 

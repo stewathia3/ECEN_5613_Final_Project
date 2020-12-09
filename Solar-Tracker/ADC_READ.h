@@ -1,3 +1,10 @@
+/*************************************************************************
+* Title:    C include file for the ADC_Read interface is included in ADC_READ.c
+* Author:   Maitreyee Rao
+
+
+**************************************************************************/
+
 #ifndef ADC_READ_H_INCLUDED
 #define ADC_READ_H_INCLUDED
 

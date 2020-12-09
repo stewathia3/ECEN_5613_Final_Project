@@ -1,12 +1,16 @@
+/*
+ *
+ *
+ *     Author: maitreyee Rao
+ *  Find definitions for the functions in bno055.h file
+ */
+
 #include <avr/io.h>
 #include "uart.h"
-
 #include <avr/sfr_defs.h>
 #include <stdint.h>
 #include <stdlib.h>
-
 #include <util/delay.h>
-
 #include "Test_BNO055.h"
 #include "bno055.h"
 #include "i2c.h"

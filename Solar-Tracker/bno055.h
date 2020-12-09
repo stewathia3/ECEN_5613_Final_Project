@@ -1,3 +1,12 @@
+/*************************************************************************
+* Title:    C include file for the bno055 interface is included in bno055.c
+* Author:   Maitreyee Rao
+* Reference : Bosch BNO055 datasheer
+**************************************************************************/
+
+
+
+
 #ifndef BNO055_H_INCLUDED
 #define BNO055_H_INCLUDED
 

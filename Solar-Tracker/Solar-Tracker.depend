@@ -84,7 +84,7 @@
 1607322570 e:\ecen_5613_final_project\solar-tracker\i2c.h
 	<avr/io.h>
 
-1607316524 source:e:\ecen_5613_final_project\solar-tracker\main.c
+1607492012 source:e:\ecen_5613_final_project\solar-tracker\main.c
 	<avr/io.h>
 	"uart.h"
 	<avr/sfr_defs.h>
@@ -98,13 +98,13 @@
 	"stepper.h"
 	"ADC_READ.h"
 
-1607322570 e:\ecen_5613_final_project\solar-tracker\uart.h
+1607492012 e:\ecen_5613_final_project\solar-tracker\uart.h
 	"gpio.h"
 	"stdutils.h"
 
-1607322570 e:\ecen_5613_final_project\solar-tracker\test_bno055.h
+1607492012 e:\ecen_5613_final_project\solar-tracker\test_bno055.h
 
-1607322570 e:\ecen_5613_final_project\solar-tracker\bno055.h
+1607492012 e:\ecen_5613_final_project\solar-tracker\bno055.h
 	"Test_BNO055.h"
 
 1607315918 source:e:\ecen_5613_final_project\solar-tracker\uart.c
@@ -124,7 +124,7 @@
 	"bno055.h"
 	"i2c.h"
 
-1607315857 source:e:\ecen_5613_final_project\solar-tracker\stepper.c
+1607465691 source:e:\ecen_5613_final_project\solar-tracker\stepper.c
 	<avr/io.h>
 	"uart.h"
 	<avr/sfr_defs.h>
@@ -133,7 +133,7 @@
 	<util/delay.h>
 	"stepper.h"
 
-1607322570 e:\ecen_5613_final_project\solar-tracker\stepper.h
+1607492012 e:\ecen_5613_final_project\solar-tracker\stepper.h
 
 1607121745 e:\ecen_5613_final_project\solar-tracker\gpio.h
 	<stdint.h>
@@ -155,7 +155,7 @@
 	"servo.h"
 	"base_servo.h"
 
-1607322570 e:\ecen_5613_final_project\solar-tracker\adc_read.h
+1607492012 e:\ecen_5613_final_project\solar-tracker\adc_read.h
 	<avr/io.h>
 	"uart.h"
 	<avr/sfr_defs.h>
@@ -163,7 +163,7 @@
 	<stdlib.h>
 	<util/delay.h>
 
-1607322570 e:\ecen_5613_final_project\solar-tracker\servo.h
+1607492012 e:\ecen_5613_final_project\solar-tracker\servo.h
 	<avr/io.h>
 	"uart.h"
 	<avr/sfr_defs.h>

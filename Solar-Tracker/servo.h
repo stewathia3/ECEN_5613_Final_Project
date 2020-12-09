@@ -1,3 +1,9 @@
+/*************************************************************************
+* Title:    C include file for the servo interface is included in servo.c
+* Author:   Sanjana Tewathia
+
+
+**************************************************************************/
 #ifndef SERVO_H_INCLUDED
 #define SERVO_H_INCLUDED
 
