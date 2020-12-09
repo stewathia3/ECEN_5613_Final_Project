@@ -1,9 +1,12 @@
-/*************************************************************************
-* Title:    C include file for the ADC_Read interface is included in ADC_READ.c
-* Author:   Maitreyee Rao
-
-
-**************************************************************************/
+/*
+ * Maitreyee Rao
+ * ECEN 5613 - Fall 2020 - Prof. McClure
+ * University of Colorado Boulder
+ * Revised 12/6/20
+ *
+ * C include file for the ADC_Read interface is included in ADC_READ.c
+ *
+ */
 
 #ifndef ADC_READ_H_INCLUDED
 #define ADC_READ_H_INCLUDED
