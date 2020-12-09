@@ -1,5 +1,5 @@
 /*
- * Sanjana Tewathai
+ * Sanjana Tewathia
  * ECEN 5613 - Fall 2020 - Prof. McClure
  * University of Colorado Boulder
  * Revised 12/6/20
