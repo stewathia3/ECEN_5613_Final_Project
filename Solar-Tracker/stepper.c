@@ -1,9 +1,13 @@
 /*
+ * Sanjana Tewathai
+ * ECEN 5613 - Fall 2020 - Prof. McClure
+ * University of Colorado Boulder
+ * Revised 12/6/20
  *
- *
- *     Author:Sanjana Tewathia
- *  Find definitions for the functions in stepper.h file
+ * Note: Code designed using the motor driver datasheet as a reference
+ *	 https://www.sparkfun.com/datasheets/Robotics/TB6612FNG.pdf?_ga=2.89788573.725926836.1607477843-2040425816.1600552029
  */
+
 
 #include <avr/io.h>
 #include "uart.h"
