@@ -1,8 +1,10 @@
 /*
+ * Sanjana Tewathia
+ * ECEN 5613 - Fall 2020 - Prof. McClure
+ * University of Colorado Boulder
+ * Revised 12/6/20
  *
- *
- *     Author: Sanjana Tewathia
- *  Find definitions for the functions in servo.h file
+ * Note: Referenced and modified from: https://www.newbiehack.com/MicrocontrollerControlAHobbyServo.aspx
  */
 
 #include <avr/io.h>
