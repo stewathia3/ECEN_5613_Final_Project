@@ -1,7 +1,10 @@
 /*
+ * Maitreyee Rao
+ * ECEN 5613 - Fall 2020 - Prof. McClure
+ * University of Colorado Boulder
+ * Revised 12/6/20
  *
- *
- *     Author: maitreyee Rao
+ * Main file that runs autonomous solar tracker state machine.
  */
 
 #include <avr/io.h>
