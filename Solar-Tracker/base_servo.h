@@ -1,12 +1,13 @@
-/*************************************************************************
-* Title:    C include file for the base_servo interface is included in base_servo.c
-* Author:   Maitreyee Rao
-*https://sites.google.com/site/qeewiki/books/avr-guide/pwm-atmega8
-
-**************************************************************************/
-
-
-
+/*
+ * Maitreyee Rao, Sanjana Tewathia
+ * ECEN 5613 - Fall 2020 - Prof. McClure
+ * University of Colorado Boulder
+ * Revised 12/6/20
+ *
+ * C include file for the base_servo interface is included in base_servo.c
+ *
+ * Note: Referenced and modified using: https://sites.google.com/site/qeewiki/books/avr-guide/pwm-atmega8
+ */
 
 #ifndef BASE_SERVO_H_INCLUDED
 #define BASE_SERVO_H_INCLUDED
