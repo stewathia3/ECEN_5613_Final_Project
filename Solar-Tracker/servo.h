@@ -1,9 +1,12 @@
-/*************************************************************************
-* Title:    C include file for the servo interface is included in servo.c
-* Author:   Sanjana Tewathia
+/*
+ * Sanjana Tewathia
+ * ECEN 5613 - Fall 2020 - Prof. McClure
+ * University of Colorado Boulder
+ * Revised 12/6/20
+ *
+ * Note: Referenced and modified from: https://www.newbiehack.com/MicrocontrollerControlAHobbyServo.aspx
+ */
 
-
-**************************************************************************/
 #ifndef SERVO_H_INCLUDED
 #define SERVO_H_INCLUDED
 
