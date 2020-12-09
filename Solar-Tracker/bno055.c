@@ -1,8 +1,12 @@
 /*
+ * Maitreyee Rao
+ * ECEN 5613 - Fall 2020 - Prof. McClure
+ * University of Colorado Boulder
+ * Revised 12/6/20
  *
+ * Find definitions for the functions in bno055.h file
  *
- *     Author: maitreyee Rao
- *  Find definitions for the functions in bno055.h file
+ * Note: Referenced and modified from: https://github.com/adafruit/Adafruit_BNO055/blob/master/Adafruit_BNO055.h
  */
 
 #include <avr/io.h>
