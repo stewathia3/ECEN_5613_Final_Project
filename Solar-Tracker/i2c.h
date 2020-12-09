@@ -1,15 +1,15 @@
-/*************************************************************************
-* Title:    C include file for the I2C interface is included in i2c.c
-* Author:   Maitreyee Rao
-* Reference : This library was built with reference to I2c library at
-https://github.com/ExploreEmbedded/ATmega32_ExploreUltraAvrDevKit/archive/master.zip
-many functions were added as required for the implementation
-
-**************************************************************************/
-
-
-
-
+/*
+ * Maitreyee Rao
+ * ECEN 5613 - Fall 2020 - Prof. McClure
+ * University of Colorado Boulder
+ * Revised 12/6/20
+ *
+ * C include file for the I2C interface is included in i2c.c
+ *
+ * Note: This library was built with reference to I2c library at
+ * https://github.com/ExploreEmbedded/ATmega32_ExploreUltraAvrDevKit/archive/master.zip
+ *
+ */
 
 #ifndef I2C_H_INCLUDED
 #define I2C_H_INCLUDED
