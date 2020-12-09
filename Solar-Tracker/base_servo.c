@@ -3,6 +3,7 @@
  *
  *     Author: maitreyee Rao
  *  Find definitions for the functions in base_servo.h file
+ *reference : https://sites.google.com/site/qeewiki/books/avr-guide/pwm-atmega8
  */
 
 #include "base_servo.h"
