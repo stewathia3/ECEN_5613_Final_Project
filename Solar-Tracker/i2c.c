@@ -3,6 +3,9 @@
  *
  *     Author: maitreyee Rao
  *  Find definitions for the functions in i2c.h file
+ * This library was built with reference to I2c library at
+ *https://github.com/ExploreEmbedded/ATmega32_ExploreUltraAvrDevKit/archive/master.zip
+ *many functions were added as required for the implementation
  */
 
 
