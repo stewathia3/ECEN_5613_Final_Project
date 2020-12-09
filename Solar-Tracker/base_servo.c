@@ -1,9 +1,12 @@
 /*
+ * Maitreyee Rao, Sanjana Tewathia
+ * ECEN 5613 - Fall 2020 - Prof. McClure
+ * University of Colorado Boulder
+ * Revised 12/6/20
  *
+ * Find definitions for the functions in base_servo.h file
  *
- *     Author: maitreyee Rao
- *  Find definitions for the functions in base_servo.h file
- *reference : https://sites.google.com/site/qeewiki/books/avr-guide/pwm-atmega8
+ * Note: Referenced and modified using: https://sites.google.com/site/qeewiki/books/avr-guide/pwm-atmega8
  */
 
 #include "base_servo.h"
