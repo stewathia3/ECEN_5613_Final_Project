@@ -1,13 +1,12 @@
 /*
+ * Maitreyee Rao
+ * ECEN 5613 - Fall 2020 - Prof. McClure
+ * University of Colorado Boulder
+ * Revised 12/6/20
  *
+ * Find definitions for the functions in ADC_READ.h file
  *
- *     Author: maitreyee Rao
- *  Find definitions for the functions in ADC_READ.h file
  */
-
-
-
-
 
 #include <avr/io.h>
 #include "uart.h"
